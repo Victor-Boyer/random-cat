@@ -1,7 +1,7 @@
 {
   "name": "mon-app",
   "version": "0.1.0",
-  "engines" : { 
+  "engine" : {
     "node" : ">=14.0.0"
   },
   "private": true,

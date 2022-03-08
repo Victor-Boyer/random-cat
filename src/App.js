@@ -15,6 +15,7 @@ function App() {
   );
   const [launch, setLaunch] = React.useState(false);
 
+  /* Router */
   return (
     <Router>
       <FavContext.Provider value={{ favorites, setFavorites }}>
