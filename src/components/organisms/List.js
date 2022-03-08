@@ -10,10 +10,10 @@ export const List = ({ items, setter, addCats }) => {
     const bottom =
       e.target.scrollHeight - Math.round(e.target.scrollTop) ===
       e.target.clientHeight;
-    if (bottom) {
+    if (bottom && !loading) {
       setLoading(true);
-      await addCats();
-      setLoading(false);
+      addCats();
+      setTimeout(() => setLoading(false), 3000);
     }
   };
   return (
@@ -24,7 +24,7 @@ export const List = ({ items, setter, addCats }) => {
           <DefaultBtn text="My Favorites" onClick={() => setter(true)} />
         </div>
         <ul
-          className="flex flex-col items-center w-5/6 h-full overflow-scroll gap-8 px-[30px] overflow-x-hidden py-10"
+          className="flex flex-col items-center w-full max-w-[500px] h-full overflow-scroll gap-8 px-[30px] overflow-x-hidden py-10"
           onScroll={(e) => {
             handleScroll(e);
           }}

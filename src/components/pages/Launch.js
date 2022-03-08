@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { getFirstCat } from "../../api/first.cat";
 import { DefaultBtn } from "../atoms/Button";
+import { DefaultCard } from "../atoms/Card";
 
 export function LaunchPage({ setter }) {
-  const [cat, setCat] = useState(null);
+  const [cat, setCat] = useState({ image: null, fact: null });
+  const [loading, setLoading] = useState(false);
 
   const fetchCat = async () => {
     setCat(await getFirstCat());
     setInterval(async () => {
       setCat(await getFirstCat());
-    }, 3000);
+    }, 5000);
   };
 
   useEffect(() => {
@@ -21,14 +23,27 @@ export function LaunchPage({ setter }) {
       <div className="w-2/3 h-2/3 flex justify-center flex-col items-center gap-12">
         <h1 className="text-xl font-bold">Welcome to WatchCats 🐈</h1>
         <img
-          src={`${process.env.REACT_APP_URL}/${cat && cat.url}`}
-          className="rounded-lg"
+          src={cat.image}
+          className={`rounded-lg max-h-[200px] ${loading ? "block" : "hidden"}`}
+          width="200"
+          onLoad={() => {
+            setLoading(true);
+          }}
+        />
+        <div
+          className={`w-[200px] h-[200px] animate-pulse bg-grey-dark rounded-lg ${
+            loading ? "hidden" : "block"
+          }`}
         />
         <DefaultBtn
           className="animate-pulse"
           text="More cats"
           onClick={() => setter(true)}
         />
+        <DefaultCard>
+          <h2 className="font-bold">Cat fact : </h2>
+          <p className="text-blue-navy">{cat.fact}</p>
+        </DefaultCard>
         <p className="italic text-sm text-grey-dark ">
           ♾ Scroll to the catfinity ♾
         </p>

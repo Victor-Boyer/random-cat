@@ -2,10 +2,8 @@ import axios from "axios";
 
 export const getFirstCat = async () => {
   try {
-    const cat = await axios.get(
-      `${process.env.REACT_APP_URL}/cat?json=true&type=sq`
-    );
-    return cat.data;
+    const { data } = await axios.get(`https://some-random-api.ml/animal/cat`);
+    return data;
   } catch (error) {
     console.error(error);
   }

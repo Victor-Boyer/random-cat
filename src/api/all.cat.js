@@ -3,7 +3,7 @@ import axios from "axios";
 export const getAllCats = async () => {
   try {
     const cats = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 2; i++) {
       const { data } = await axios.get(
         `${process.env.REACT_APP_URL}/cat?json=true&type=sq`
       );
