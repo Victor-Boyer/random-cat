@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { CatPage } from "./components/pages/Cat";
 
 /* Import pages */
 import { HomePage } from "./components/pages/Home";
@@ -13,7 +14,7 @@ function App() {
       ? JSON.parse(localStorage.getItem("cat-fav"))
       : []
   );
-  const [launch, setLaunch] = React.useState(false);
+  const [launch, setLaunch] = React.useState(true);
 
   /* Router */
   return (
@@ -21,9 +22,15 @@ function App() {
       <FavContext.Provider value={{ favorites, setFavorites }}>
         <Routes>
           {launch ? (
-            <Route path="/" element={<HomePage />} />
+            <>
+              <Route exact path="/cat/:id" element={<CatPage />} />
+              <Route exact path="/" element={<HomePage />} />
+            </>
           ) : (
-            <Route exact path="/" element={<LaunchPage setter={setLaunch} />} />
+            <>
+              <Route exact path="/cat/:id" element={<CatPage />} />
+              <Route path="/" element={<LaunchPage setter={setLaunch} />} />
+            </>
           )}
         </Routes>
       </FavContext.Provider>

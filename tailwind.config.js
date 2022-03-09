@@ -17,6 +17,9 @@ module.exports = {
       red: {
         DEFAULT: "#FF0000",
       },
+      green: {
+        DEFAULT: "#00FF00",
+      },
     },
     boxShadow: {
       default:

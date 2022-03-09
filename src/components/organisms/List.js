@@ -20,7 +20,12 @@ export const List = ({ items, setter, addCats }) => {
     <div className="w-full h-screen">
       <div className="w-full h-full flex flex-col items-center">
         <div className="flex items-center justify-around py-5 w-full">
-          <h1 className="font-bold text-lg">WatchCats 😻</h1>
+          <h1
+            className="font-bold text-lg cursor-pointer"
+            onClick={() => window.location.reload()}
+          >
+            WatchCats 😻
+          </h1>
           <DefaultBtn text="My Favorites" onClick={() => setter(true)} />
         </div>
         <ul

@@ -5,13 +5,14 @@ import { DefaultCard } from "../atoms/Card";
 
 export function LaunchPage({ setter }) {
   const [cat, setCat] = useState({ image: null, fact: null });
+  const [fact, setFact] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fetchCat = async () => {
     setCat(await getFirstCat());
     setInterval(async () => {
       setCat(await getFirstCat());
-    }, 5000);
+    }, 8000);
   };
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export function LaunchPage({ setter }) {
           width="200"
           onLoad={() => {
             setLoading(true);
+            setFact(cat.fact);
           }}
         />
         <div
@@ -35,14 +37,11 @@ export function LaunchPage({ setter }) {
             loading ? "hidden" : "block"
           }`}
         />
-        <DefaultBtn
-          className="animate-pulse"
-          text="More cats"
-          onClick={() => setter(true)}
-        />
+
+        <DefaultBtn text="More cats" onClick={() => setter(true)} />
         <DefaultCard>
           <h2 className="font-bold">Cat fact : </h2>
-          <p className="text-blue-navy">{cat.fact}</p>
+          <p className="text-blue-navy">{fact}</p>
         </DefaultCard>
         <p className="italic text-sm text-grey-dark ">
           ♾ Scroll to the catfinity ♾
