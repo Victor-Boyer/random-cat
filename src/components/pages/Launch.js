@@ -12,9 +12,9 @@ export function LaunchPage({ setter }) {
 
   const fetchCat = async () => {
     setCat(await getFirstCat());
-    /*     const it = setInterval(async () => {
+    const it = setInterval(async () => {
       setCat(await getFirstCat());
-    }, 8000); */
+    }, 8000);
     return () => clearInterval(it);
   };
 
