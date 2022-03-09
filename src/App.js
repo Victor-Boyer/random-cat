@@ -20,6 +20,20 @@ function App() {
     localStorage.getItem("theme") ? localStorage.getItem("theme") : null
   );
 
+  const handleThemeChange = () => {
+    if (theme === "dark") {
+      localStorage.theme = "light";
+      setTheme("light");
+    } else if (theme === "light") {
+      localStorage.theme = "dark";
+      setTheme("dark");
+    } else {
+      // Whenever the user explicitly chooses to respect the OS preference
+      localStorage.removeItem("theme");
+      setTheme(null);
+    }
+  };
+
   useEffect(() => {
     if (
       localStorage.theme === "dark" ||
@@ -30,21 +44,12 @@ function App() {
     } else {
       document.documentElement.classList.remove("dark");
     }
-
-    if (theme === "dark") {
-      localStorage.theme = "light";
-    } else if (theme === "light") {
-      localStorage.theme = "dark";
-    } else {
-      // Whenever the user explicitly chooses to respect the OS preference
-      localStorage.removeItem("theme");
-    }
   }, [theme]);
 
   /* Router */
   return (
     <Router>
-      <ThemeContext.Provider value={{ theme, setTheme: setTheme }}>
+      <ThemeContext.Provider value={{ theme, setTheme: handleThemeChange }}>
         <FavContext.Provider value={{ favorites, setFavorites }}>
           <Routes>
             {launch ? (
