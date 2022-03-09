@@ -14,7 +14,7 @@ function App() {
       ? JSON.parse(localStorage.getItem("cat-fav"))
       : []
   );
-  const [launch, setLaunch] = React.useState(true);
+  const [launch, setLaunch] = React.useState(false);
 
   /* Router */
   return (
