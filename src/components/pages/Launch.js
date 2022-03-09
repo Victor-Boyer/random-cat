@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getFirstCat } from "../../api/first.cat";
+import { TypcnAdjustContrast } from "../../helpers/fav.icons";
 import { DefaultBtn } from "../atoms/Button";
 import { DefaultCard } from "../atoms/Card";
-
+import { ThemeContext } from "../../context/theme";
 export function LaunchPage({ setter }) {
+  const { theme, setTheme } = useContext(ThemeContext);
   const [cat, setCat] = useState({ image: null, fact: null });
   const [fact, setFact] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fetchCat = async () => {
     setCat(await getFirstCat());
-    setInterval(async () => {
+    /*     const it = setInterval(async () => {
       setCat(await getFirstCat());
-    }, 8000);
+    }, 8000); */
+    return () => clearInterval(it);
   };
 
   useEffect(() => {
@@ -20,11 +23,14 @@ export function LaunchPage({ setter }) {
   }, []);
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
+    <div className="h-screen w-screen flex justify-center items-center dark:bg-dark-smooth">
       <div className="w-2/3 h-2/3 flex justify-center flex-col items-center gap-12">
-        <h1 className="text-xl font-bold">Welcome to WatchCats 🐈</h1>
+        {/*  <NavBar /> */}
+        <h1 className="text-xl font-bold dark:text-white">
+          Welcome to WatchCats 🐈
+        </h1>
         <img
-          src={cat.image}
+          src={cat && cat.image}
           className={`rounded-lg max-h-[200px] ${loading ? "block" : "hidden"}`}
           width="200"
           onLoad={() => {
@@ -41,11 +47,20 @@ export function LaunchPage({ setter }) {
         <DefaultBtn text="More cats" onClick={() => setter(true)} />
         <DefaultCard>
           <h2 className="font-bold">Cat fact : </h2>
-          <p className="text-blue-navy">{fact}</p>
+          <p className="text-blue-navy dark:text-grey">{fact}</p>
         </DefaultCard>
-        <p className="italic text-sm text-grey-dark ">
-          ♾ Scroll to the catfinity ♾
-        </p>
+        <div className="flex flex-col items-center italic text-sm text-grey-dark ">
+          <p>♾ Scroll to the catfinity ♾</p>
+          <span
+            className="flex items-center justify-between mt-2 cursor-pointer"
+            onClick={() => {
+              setTheme(theme === "dark" ? "light" : "dark");
+            }}
+          >
+            {theme === "dark" ? "Dark 🌙" : "Light ☀️"}
+            <TypcnAdjustContrast className="hrv-grow cursor-pointer dark:text-white mx-2 animate-pulse" />
+          </span>
+        </div>
       </div>
     </div>
   );

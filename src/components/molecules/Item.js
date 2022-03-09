@@ -13,7 +13,7 @@ export const Item = ({ cat }) => {
   const [copy, setCopy] = useState(false);
   const [loading, setLoading] = useState(false);
   return (
-    <li key={cat.id} className="w-full">
+    <li className="w-full">
       <DefaultCard className="flex flex-col justify-around">
         <img
           className={`w-full ${loading ? "block" : "hidden"}`}
@@ -30,25 +30,39 @@ export const Item = ({ cat }) => {
         />
 
         {favorites.includes(cat.id) ? (
-          <div className="flex items-center justify-around italic text-sm mt-4">
+          <div className="flex items-center justify-between italic text-sm mt-4">
             <label className="flex items-center gap-2">
               <TypcnHeartFullOutline
-                className="cursor-pointer"
+                className="cursor-pointer hrv-grow"
                 onClick={() => {
                   removeFromFavorite(cat, favorites, setFavorites);
                 }}
               />
             </label>
-            <label className="flex items-center gap-2">
+            <label
+              className="flex items-center gap-2 cursor-pointer hrv-grow"
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `https://watchcats.pages.dev/cat/${cat.id}`
+                );
+                setCopy(true);
+                setTimeout(() => setCopy(false), 2500);
+              }}
+            >
               share the cat
-              <TypcnArrowForward />
+              <TypcnArrowForward className={`hrv-grow `} />
             </label>
+            {copy && (
+              <span className="bg-green text-white font-bold px-2 rounded">
+                Copied!
+              </span>
+            )}
           </div>
         ) : (
           <div className="flex items-center justify-between italic text-sm mt-4">
             <label className="flex items-center gap-2">
               <TypcnHeartOutline
-                className="cursor-pointer"
+                className="cursor-pointer hrv-grow"
                 onClick={() => {
                   addToFavorite(cat, favorites, setFavorites);
                 }}
@@ -58,18 +72,21 @@ export const Item = ({ cat }) => {
             <label
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => {
+                console.log("coucou");
                 navigator.clipboard.writeText(
                   `https://watchcats.pages.dev/cat/${cat.id}`
                 );
                 setCopy(true);
-                setTimeout(() => setCopy(false), 4000);
+                setTimeout(() => setCopy(false), 2500);
               }}
             >
               share the cat
               <TypcnArrowForward className="hvr-grow" />
-              <span className="bg-green text-grey font-bold px-2 rounded">
-                {copy && "Copied!"}
-              </span>
+              {copy && (
+                <span className="bg-green text-grey font-bold px-2 rounded">
+                  Copied!
+                </span>
+              )}
             </label>
           </div>
         )}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllCats } from "../../api/all.cat";
 import { FavoritesList } from "../organisms/FavoritesList";
 import { List } from "../organisms/List";
+import { NavBar } from "../organisms/NavBar";
 
 export function HomePage() {
   const [cats, setCats] = useState([]);
@@ -21,13 +22,16 @@ export function HomePage() {
   }, []);
 
   return (
-    <div className="md:flex md:justify-center">
-      <div className="flex w-screen justify-around max-w-[600px]">
-        {favPage ? (
-          <FavoritesList setter={setFavPage} />
-        ) : (
-          <List items={cats} setter={setFavPage} addCats={addCats} />
-        )}
+    <div className="dark:bg-dark-smooth">
+      <NavBar setter={setFavPage} favPage={favPage} location={"HOME"} />
+      <div className="md:flex md:justify-center">
+        <div className="flex flex-col w-screen justify-around max-w-[600px]">
+          {favPage ? (
+            <FavoritesList />
+          ) : (
+            <List items={cats} setter={setFavPage} addCats={addCats} />
+          )}
+        </div>
       </div>
     </div>
   );

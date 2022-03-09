@@ -13,23 +13,16 @@ export const List = ({ items, setter, addCats }) => {
     if (bottom && !loading) {
       setLoading(true);
       addCats();
-      setTimeout(() => setLoading(false), 3000);
+      const timeout = setTimeout(() => setLoading(false), 3000);
+      return () => clearTimeout(timeout);
     }
   };
+
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex flex-col items-center">
-        <div className="flex items-center justify-around py-5 w-full">
-          <h1
-            className="font-bold text-lg cursor-pointer"
-            onClick={() => window.location.reload()}
-          >
-            WatchCats 😻
-          </h1>
-          <DefaultBtn text="My Favorites" onClick={() => setter(true)} />
-        </div>
         <ul
-          className="flex flex-col items-center w-full max-w-[500px] h-full overflow-scroll gap-8 px-[30px] overflow-x-hidden py-10"
+          className="flex flex-col items-center w-full max-w-[500px] h-full overflow-scroll gap-8 px-[30px] overflow-x-hidden py-10 mt-10"
           onScroll={(e) => {
             handleScroll(e);
           }}

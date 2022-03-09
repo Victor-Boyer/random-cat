@@ -1,5 +1,6 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
+  darkMode: "class",
   theme: {
     colors: {
       grey: {
@@ -13,12 +14,21 @@ module.exports = {
       },
       white: {
         DEFAULT: "#FFFFFF",
+        dark: "#F5F5F5",
       },
       red: {
         DEFAULT: "#FF0000",
       },
       green: {
         DEFAULT: "#00FF00",
+      },
+      dark: {
+        DEFAULT: "#000000",
+        smooth: "#10132a",
+        light: "#1e263b",
+      },
+      purple: {
+        DEFAULT: "#791bf2",
       },
     },
     boxShadow: {

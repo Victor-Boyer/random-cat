@@ -1,5 +1,5 @@
 {
-  "name": "mon-app",
+  "name": "watchcats",
   "version": "0.1.0",
   "engine" : {
     "node" : ">=14.0.0"
