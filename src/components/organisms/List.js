@@ -3,7 +3,7 @@ import { DefaultBtn } from "../atoms/Button";
 import { Item } from "../molecules/Item";
 import { useState } from "react";
 
-export const List = ({ items, setter, addCats }) => {
+export const List = ({ items, addCats }) => {
   const [loading, setLoading] = useState(false);
 
   const handleScroll = async (e) => {
@@ -22,7 +22,7 @@ export const List = ({ items, setter, addCats }) => {
     <div className="w-full h-screen">
       <div className="w-full h-full flex flex-col items-center">
         <ul
-          className="flex flex-col items-center w-full max-w-[500px] h-full overflow-scroll gap-8 px-[30px] overflow-x-hidden py-10 mt-10"
+          className="flex flex-col items-center w-full max-w-[500px] h-full overflow-scroll gap-8 px-[30px] overflow-x-hidden py-5 mt-10"
           onScroll={(e) => {
             handleScroll(e);
           }}

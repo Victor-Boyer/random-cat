@@ -14,3 +14,14 @@ export const getAllCats = async () => {
     console.error(error);
   }
 };
+
+export const getMessageCat = async (message) => {
+  try {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_URL}/cat/says/${message}?json=true&type=sq`
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

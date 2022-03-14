@@ -1,5 +1,5 @@
 import {
-  TypcnArrowForward,
+  IcRoundShare,
   TypcnHeartFullOutline,
   TypcnHeartOutline,
 } from "../../helpers/fav.icons";
@@ -12,6 +12,22 @@ export const Item = ({ cat }) => {
   const { favorites, setFavorites } = useContext(FavContext);
   const [copy, setCopy] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const cutString = (str, id) => {
+    const index = str.indexOf("says");
+    return id + "/" + str.substring(index, str.length);
+  };
+
+  const copyToClipboard = async (cat) => {
+    navigator.clipboard.writeText(
+      `https://watchcats.pages.dev/cat/${
+        cat.url.includes("says") ? cutString(cat.url, cat.id) : cat.id
+      }`
+    );
+    setCopy(true);
+    setTimeout(() => setCopy(false), 2500);
+  };
+
   return (
     <li className="w-full">
       <DefaultCard className="flex flex-col justify-around">
@@ -41,16 +57,10 @@ export const Item = ({ cat }) => {
             </label>
             <label
               className="flex items-center gap-2 cursor-pointer hrv-grow"
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  `https://watchcats.pages.dev/cat/${cat.id}`
-                );
-                setCopy(true);
-                setTimeout(() => setCopy(false), 2500);
-              }}
+              onClick={() => copyToClipboard(cat)}
             >
               share the cat
-              <TypcnArrowForward className={`hrv-grow `} />
+              <IcRoundShare className={`hrv-grow `} />
             </label>
             {copy && (
               <span className="bg-green text-white font-bold px-2 rounded">
@@ -71,17 +81,10 @@ export const Item = ({ cat }) => {
             </label>
             <label
               className="flex items-center gap-2 cursor-pointer"
-              onClick={() => {
-                console.log("coucou");
-                navigator.clipboard.writeText(
-                  `https://watchcats.pages.dev/cat/${cat.id}`
-                );
-                setCopy(true);
-                setTimeout(() => setCopy(false), 2500);
-              }}
+              onClick={() => copyToClipboard(cat)}
             >
               share the cat
-              <TypcnArrowForward className="hvr-grow" />
+              <IcRoundShare className="hvr-grow" />
               {copy && (
                 <span className="bg-green text-grey font-bold px-2 rounded">
                   Copied!

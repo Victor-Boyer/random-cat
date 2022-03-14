@@ -4,7 +4,10 @@ import { TypcnAdjustContrast } from "../../helpers/fav.icons";
 import { DefaultBtn } from "../atoms/Button";
 import { DefaultCard } from "../atoms/Card";
 import { ThemeContext } from "../../context/theme";
+import { useNavigate } from "react-router-dom";
+
 export function LaunchPage({ setter }) {
+  const navigate = useNavigate();
   const { theme, setTheme } = useContext(ThemeContext);
   const [cat, setCat] = useState({ image: null, fact: null });
   const [fact, setFact] = useState(null);
@@ -44,7 +47,14 @@ export function LaunchPage({ setter }) {
           }`}
         />
 
-        <DefaultBtn text="More cats" onClick={() => setter(true)} />
+        <DefaultBtn
+          onClick={() => {
+            navigate("/");
+            setter(true);
+          }}
+        >
+          More cats
+        </DefaultBtn>
         <DefaultCard>
           <h2 className="font-bold">Cat fact : </h2>
           <p className="text-blue-navy dark:text-grey">{fact}</p>

@@ -3,7 +3,7 @@ import { FavContext } from "../../context/fav";
 
 import { Item } from "../molecules/Item";
 
-export const FavoritesList = ({ setter }) => {
+export const FavoritesList = () => {
   const { favorites, setFavorites } = useContext(FavContext);
 
   return (

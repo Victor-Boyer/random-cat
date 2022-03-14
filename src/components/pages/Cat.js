@@ -8,7 +8,14 @@ import { NavBar } from "../organisms/NavBar";
 export function CatPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState(window.location.href);
   const { id } = useParams();
+
+  const cutString = (str, id) => {
+    const index = str.indexOf("says");
+    return id + "/" + str.substring(index, str.length);
+  };
+
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center dark:bg-dark-smooth overflow-hidden">
       <NavBar />
@@ -17,34 +24,37 @@ export function CatPage() {
           It looks like someone sent you a cat 🐈
         </div>
         <DefaultCard className="flex flex-col ">
-          <img
-            className={`w-full ${loading ? "block" : "hidden"}`}
-            onLoad={() => {
-              setLoading(true);
-            }}
-            src={`${process.env.REACT_APP_URL}//cat/${id}?type=sq`}
-          />
+          {id !== "null" && (
+            <img
+              className={`w-full max-w-[400px] ${loading ? "block" : "hidden"}`}
+              onLoad={() => {
+                setLoading(true);
+              }}
+              src={`${process.env.REACT_APP_URL}/cat/${
+                url.includes("says") ? cutString(url, id) : id
+              }?type=sq`}
+            />
+          )}
           <div
             className={`w-full h-[300px] animate-pulse bg-grey-dark ${
-              loading ? "hidden" : "block"
+              loading || id === "null" ? "hidden" : "block"
             }`}
           />
         </DefaultCard>
         <div className="flex flex-col items-center gap-2 dark:text-white">
           <p>Wan't to see more cats?</p>
           <div>
-            <DefaultBtn
-              text="YES"
-              onClick={() => navigate("/")}
-              className="mr-2"
-            />
+            <DefaultBtn onClick={() => navigate("/")} className="mr-2">
+              YES
+            </DefaultBtn>
             <RedBtn
-              text="NO"
               onClick={() => {
                 window.alert("HAHAHAHA nice try !");
                 navigate("/");
               }}
-            />
+            >
+              NO
+            </RedBtn>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { CatPage } from "./components/pages/Cat";
 /* Import pages */
 import { HomePage } from "./components/pages/Home";
 import { LaunchPage } from "./components/pages/Launch";
+import { MakeACat } from "./components/pages/MakeACat";
 
 import { FavContext } from "./context/fav";
 import { ThemeContext } from "./context/theme";
@@ -55,12 +56,13 @@ function App() {
             {launch ? (
               <>
                 <Route exact path="/cat/:id" element={<CatPage />} />
-                <Route exact path="/" element={<HomePage />} />
+                <Route exact path="/make-a-cat" element={<MakeACat />} />
+                <Route path="*" element={<HomePage />} />
               </>
             ) : (
               <>
-                <Route exact path="/cat/:id" element={<CatPage />} />
-                <Route path="/" element={<LaunchPage setter={setLaunch} />} />
+                <Route exact path="/cat/:id/*" element={<CatPage />} />
+                <Route path="*" element={<LaunchPage setter={setLaunch} />} />
               </>
             )}
           </Routes>

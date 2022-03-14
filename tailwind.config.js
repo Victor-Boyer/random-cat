@@ -30,6 +30,9 @@ module.exports = {
       purple: {
         DEFAULT: "#791bf2",
       },
+      opacity: {
+        DEFAULT: "rgba(0, 0, 0, 0.5)",
+      },
     },
     boxShadow: {
       default:
