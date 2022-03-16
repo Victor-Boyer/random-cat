@@ -20,7 +20,7 @@ export const Item = ({ cat }) => {
 
   const copyToClipboard = async (cat) => {
     navigator.clipboard.writeText(
-      `https://watchcats.pages.dev/cat/${
+      `https://watchcats.fr/cat/${
         cat.url.includes("says") ? cutString(cat.url, cat.id) : cat.id
       }`
     );
