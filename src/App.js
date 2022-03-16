@@ -18,7 +18,7 @@ function App() {
   );
   const [launch, setLaunch] = React.useState(false);
   const [theme, setTheme] = React.useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : null
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
 
   const handleThemeChange = () => {
@@ -28,10 +28,6 @@ function App() {
     } else if (theme === "light") {
       localStorage.theme = "dark";
       setTheme("dark");
-    } else {
-      // Whenever the user explicitly chooses to respect the OS preference
-      localStorage.removeItem("theme");
-      setTheme(null);
     }
   };
 
