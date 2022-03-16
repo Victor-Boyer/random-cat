@@ -45,6 +45,9 @@ function App() {
     } else {
       document.documentElement.classList.remove("dark");
     }
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "light");
+    }
   }, [theme]);
 
   /* Router */
