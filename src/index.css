@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url("hover.css/css/hover-min.css");
+@import 'react-toastify/dist/ReactToastify.css';
 
 body {
   margin: 0;
@@ -19,7 +20,7 @@ code {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 0px;
 }
 
 /* Track */

@@ -5,6 +5,7 @@ import { DefaultBtn } from "../atoms/Button";
 import { DefaultCard } from "../atoms/Card";
 import { ThemeContext } from "../../context/theme";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 export function LaunchPage({ setter }) {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export function LaunchPage({ setter }) {
 
   useEffect(() => {
     fetchCat();
+    toast.info("This app is still in development, all features are not done!");
   }, []);
 
   return (
@@ -72,6 +74,7 @@ export function LaunchPage({ setter }) {
           </span>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

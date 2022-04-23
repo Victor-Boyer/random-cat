@@ -7,10 +7,10 @@ import { DefaultCard } from "../atoms/Card";
 import { FavContext } from "../../context/fav";
 import { useContext, useState } from "react";
 import { addToFavorite, removeFromFavorite } from "../../helpers/fav.setter";
+import { toast } from "react-toastify";
 
 export const Item = ({ cat }) => {
   const { favorites, setFavorites } = useContext(FavContext);
-  const [copy, setCopy] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const cutString = (str, id) => {
@@ -24,8 +24,7 @@ export const Item = ({ cat }) => {
         cat.url.includes("says") ? cutString(cat.url, cat.id) : cat.id
       }`
     );
-    setCopy(true);
-    setTimeout(() => setCopy(false), 2500);
+    toast.success("Link copied !");
   };
 
   return (
@@ -62,17 +61,11 @@ export const Item = ({ cat }) => {
               share the cat
               <IcRoundShare className={`hrv-grow `} />
             </label>
-            {copy && (
-              <span className="bg-green text-white font-bold px-2 rounded">
-                Copied!
-              </span>
-            )}
           </div>
         ) : (
           <div className="flex items-center justify-between italic text-sm mt-4">
-            <label className="flex items-center gap-2">
+            <label className="flex items-center gap-2 cursor-pointer">
               <TypcnHeartOutline
-                className="cursor-pointer hrv-grow"
                 onClick={() => {
                   addToFavorite(cat, favorites, setFavorites);
                 }}
@@ -84,12 +77,7 @@ export const Item = ({ cat }) => {
               onClick={() => copyToClipboard(cat)}
             >
               share the cat
-              <IcRoundShare className="hvr-grow" />
-              {copy && (
-                <span className="bg-green text-grey font-bold px-2 rounded">
-                  Copied!
-                </span>
-              )}
+              <IcRoundShare />
             </label>
           </div>
         )}

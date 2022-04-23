@@ -33,7 +33,7 @@ export function IcRoundShare(props) {
 
 export function TypcnAdjustContrast(props) {
   return (
-    <svg width="2em" height="2em" viewBox="0 0 24 24" {...props}>
+    <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" {...props}>
       <path
         fill="currentColor"
         d="M12 4a8 8 0 1 0 0 16a8 8 0 0 0 0-16zm0 14a6 6 0 1 1 0-12a6 6 0 0 1 0 12zm0-11v10c2.757 0 5-2.243 5-5s-2.243-5-5-5z"
@@ -44,7 +44,7 @@ export function TypcnAdjustContrast(props) {
 
 export function IcRoundMenu(props) {
   return (
-    <svg width="2em" height="2em" viewBox="0 0 24 24" {...props}>
+    <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" {...props}>
       <path
         fill="currentColor"
         d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z"
@@ -107,6 +107,17 @@ export function IcRoundArrowBack(props) {
       <path
         fill="currentColor"
         d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42a.996.996 0 0 0-1.41 0l-6.59 6.59a.996.996 0 0 0 0 1.41l6.59 6.59a.996.996 0 1 0 1.41-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"
+      ></path>
+    </svg>
+  );
+}
+
+export function IcBaselineContactSupport(props) {
+  return (
+    <svg width="2em" height="2em" viewBox="0 0 24 24" {...props}>
+      <path
+        fill="#000000"
+        d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5c0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"
       ></path>
     </svg>
   );

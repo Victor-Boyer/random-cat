@@ -9,6 +9,7 @@ import {
 import { MenuButton } from "../../atoms/Button";
 import { Themes } from "./element/themes";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export const MobileMenu = ({ setIsOpen, isOpen, setFav, favPage }) => {
   const navigate = useNavigate();
@@ -27,8 +28,8 @@ export const MobileMenu = ({ setIsOpen, isOpen, setFav, favPage }) => {
         }}
       />
       <div
-        className={`flex flex-col transition-all items-center w-full rounded-t-lg bg-white dark:bg-dark-light dark:text-white w-screen fixed bottom-0 px-5 py-2 ${
-          isOpen ? "h-1/3" : "h-0"
+        className={`flex flex-col transition-all items-center w-full rounded-t-lg bg-white dark:bg-dark-light dark:text-white w-screen fixed bottom-0 ${
+          isOpen ? "h-1/3 px-5 py-2" : "h-0"
         }`}
       >
         <IcRoundMinus
@@ -56,7 +57,7 @@ export const MobileMenu = ({ setIsOpen, isOpen, setFav, favPage }) => {
               </MenuButton>
             </li>
             <li>
-              <MenuButton>
+              <MenuButton onClick={() => toast("Not ready yet!")}>
                 <IcSharpFilterList />
                 Filters
               </MenuButton>
