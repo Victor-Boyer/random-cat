@@ -1,3 +1,3 @@
 # Watchcats !
 
-![alt cat](http://url/to/img.png)
+![alt cat](https://cataas.com/cat/says/hello%20world!)
