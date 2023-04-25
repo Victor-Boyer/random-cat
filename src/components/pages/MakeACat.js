@@ -39,7 +39,6 @@ export const MakeACat = () => {
       <div className="h-screen bg-white dark:bg-dark-smooth md:py-20 md:px-3">
         <div className="flex justify-center">
           <div className="flex flex-col gap-4 items-center justify-around w-full max-w-[500px] mt-12">
-            <Item cat={{ id: cat && cat._id, url: `${cat && cat.url}` }} />
             <span className="w-full flex justify-center gap-4 px-3 md:px-0">
               <DefaultInput
                 placeholder="Enter your message..."
@@ -58,6 +57,9 @@ export const MakeACat = () => {
                 <span className="hidden lg:block transition-all">Generate</span>
               </DefaultBtn>
             </span>
+            <ul className="max-h-[300px]">
+              <Item cat={{ id: cat && cat._id, url: `${cat && cat.url}` }} />
+            </ul>
           </div>
         </div>
       </div>
