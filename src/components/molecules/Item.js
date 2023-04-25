@@ -21,17 +21,19 @@ export const Item = ({ cat }) => {
   const copyToClipboard = async (cat) => {
     navigator.clipboard.writeText(
       `https://watchcats.fr/cat/${
-        cat.url.includes("says") ? cutString(cat.url, cat.id) : cat.id
+        cat.url.includes("says") ? cutString(cat.url, cat.id) : cat._id
       }`
     );
     toast.success("Link copied !");
   };
 
   return (
-    <li className="w-full">
+    <li className="w-full max-w-[500px] mt-8 md:mt-12">
       <DefaultCard className="flex flex-col justify-around">
         <img
-          className={`w-full ${loading ? "block" : "hidden"}`}
+          className={`w-full ${
+            loading ? "block" : "hidden"
+          } bg-contain  max-h-[600px]`}
           onLoad={() => {
             setLoading(true);
           }}
@@ -43,44 +45,36 @@ export const Item = ({ cat }) => {
             loading ? "hidden" : "block"
           }`}
         />
-
-        {favorites.includes(cat.id) ? (
-          <div className="flex items-center justify-between italic text-sm mt-4">
-            <label className="flex items-center gap-2">
-              <TypcnHeartFullOutline
-                className="cursor-pointer hrv-grow"
-                onClick={() => {
-                  removeFromFavorite(cat, favorites, setFavorites);
-                }}
-              />
-            </label>
-            <label
-              className="flex items-center gap-2 cursor-pointer hrv-grow"
-              onClick={() => copyToClipboard(cat)}
-            >
-              share the cat
-              <IcRoundShare className={`hrv-grow `} />
-            </label>
+        <div className="flex items-center gap-3 ml-4 italic text-sm my-3">
+          <div
+            onClick={() => {
+              if (favorites.includes(cat._id || cat.id)) {
+                removeFromFavorite(cat, favorites, setFavorites);
+              } else {
+                addToFavorite(cat, favorites, setFavorites);
+              }
+            }}
+          >
+            {favorites.includes(cat._id || cat.id) ? (
+              <label className="flex items-center gap-2 cursor-pointer">
+                <TypcnHeartFullOutline />
+              </label>
+            ) : (
+              <label className="flex items-center gap-2 cursor-pointer">
+                <TypcnHeartOutline />
+              </label>
+            )}
           </div>
-        ) : (
-          <div className="flex items-center justify-between italic text-sm mt-4">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <TypcnHeartOutline
-                onClick={() => {
-                  addToFavorite(cat, favorites, setFavorites);
-                }}
-              />
-              add to favorites
-            </label>
-            <label
-              className="flex items-center gap-2 cursor-pointer"
-              onClick={() => copyToClipboard(cat)}
-            >
-              share the cat
-              <IcRoundShare />
-            </label>
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              copyToClipboard(cat);
+            }}
+          >
+            <IcRoundShare />
           </div>
-        )}
+        </div>
       </DefaultCard>
     </li>
   );

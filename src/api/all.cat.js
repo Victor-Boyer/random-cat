@@ -18,7 +18,7 @@ export const getAllCats = async () => {
 export const getMessageCat = async (message) => {
   try {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_URL}/cat/says/${message}?json=true&type=sq`
+      `${process.env.REACT_APP_URL}/cat/says/${message}?json=true`
     );
     return data;
   } catch (error) {

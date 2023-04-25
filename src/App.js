@@ -4,11 +4,11 @@ import { CatPage } from "./components/pages/Cat";
 
 /* Import pages */
 import { HomePage } from "./components/pages/Home";
-import { LaunchPage } from "./components/pages/Launch";
 import { MakeACat } from "./components/pages/MakeACat";
-
+import { FavoritesPage } from "./components/pages/FavPage";
 import { FavContext } from "./context/fav";
 import { ThemeContext } from "./context/theme";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [favorites, setFavorites] = React.useState(
@@ -52,7 +52,15 @@ function App() {
       <ThemeContext.Provider value={{ theme, setTheme: handleThemeChange }}>
         <FavContext.Provider value={{ favorites, setFavorites }}>
           <Routes>
-            {launch ? (
+            <>
+              <Route exact path="/cat/:id" element={<CatPage />} />
+              <Route exact path="/make-a-cat" element={<MakeACat />} />
+              <Route exact path="/cat/:id/*" element={<CatPage />} />
+              <Route path="/favorites" element={<FavoritesPage />} />
+
+              <Route path="*" element={<HomePage />} />
+            </>
+            {/*             {launch ? (
               <>
                 <Route exact path="/cat/:id" element={<CatPage />} />
                 <Route exact path="/make-a-cat" element={<MakeACat />} />
@@ -63,10 +71,11 @@ function App() {
                 <Route exact path="/cat/:id/*" element={<CatPage />} />
                 <Route path="*" element={<LaunchPage setter={setLaunch} />} />
               </>
-            )}
+            )} */}
           </Routes>
         </FavContext.Provider>
       </ThemeContext.Provider>
+      <ToastContainer position="bottom-right" />
     </Router>
   );
 }

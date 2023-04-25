@@ -5,23 +5,23 @@ import {
   IcBaselineDriveFileRenameOutline,
   IcRoundMenu,
   IcSharpFilterList,
-  TypcnHeartOutline,
-  TypcnThMenu,
+  MoonIc,
+  SunIc,
+  TypcnHeartFullOutline,
 } from "../../helpers/fav.icons";
 import { ThemeContext } from "../../context/theme";
 import { MobileMenu } from "./navbar/MobileMenu";
 import { useNavigate } from "react-router-dom";
-import { IcOutlineHome } from "../../helpers/fav.icons.check";
-import { ToastContainer, toast } from "react-toastify";
+import { HomeFullFilled } from "../../helpers/fav.icons.check";
+import { toast } from "react-toastify";
 
-export function NavBar({ setter, favPage }) {
+export function NavBar() {
   const navigate = useNavigate();
   const { theme, setTheme } = useContext(ThemeContext);
   const [location, setLocation] = useState(true);
 
   const [width, setWidth] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
@@ -33,7 +33,7 @@ export function NavBar({ setter, favPage }) {
     };
   }, []);
   useEffect(() => {
-    if (width < 768) {
+    if (width < 1025) {
       setIsMobile(true);
     } else {
       setIsMobile(false);
@@ -41,90 +41,71 @@ export function NavBar({ setter, favPage }) {
   }, [width]);
 
   const itemNavDesktop =
-    "flex gap-2 items-center font-semibold cursor-pointer hvr-shrink";
-
+    "flex gap-4 items-center cursor-pointer dark:hover:bg-[#0c0f21] hover:bg-grey rounded-md p-3 transition-all";
+  const itemTextNav = "hidden lg:block transition-all";
   return (
-    <div className="w-screen flex justify-center">
-      <div className="flex justify-around items-center w-full fixed max-w-[1500px] py-3 bg-white dark:bg-dark-smooth z-20 max-w-fit">
-        <h1
-          className="font-bold text-lg cursor-pointer dark:text-white"
-          onClick={() => window.location.reload()}
-        >
-          {location ? "WatchCats 😻" : "My Favorites"}
-        </h1>
-        {setter &&
-          (!isMobile ? (
-            <div className="dark:text-white flex justify-end gap-20 items-center w-2/3">
-              {!location || window.location.pathname !== "/" ? (
-                <div
-                  className={itemNavDesktop}
-                  onClick={() => {
-                    setter(!favPage);
-                    setLocation(!location);
-                    navigate("/");
-                  }}
-                >
-                  Home
-                  <IcOutlineHome />
-                </div>
-              ) : (
-                <div
-                  className={itemNavDesktop}
-                  onClick={() => {
-                    setter(!favPage);
-                    setLocation(!location);
-                  }}
-                >
-                  My Favorites
-                  <TypcnHeartOutline />
-                </div>
-              )}
-              <div
-                className={itemNavDesktop + " opacity-40"}
-                onClick={() => toast("Not ready yet!")}
-              >
-                Filters
-                <IcSharpFilterList />
-              </div>
-              <div
-                className={itemNavDesktop}
-                onClick={() => {
-                  navigate("/make-a-cat");
-                }}
-              >
-                Write a cat
-                <IcBaselineDriveFileRenameOutline />
-              </div>
-              <span
-                className="flex items-center justify-center cursor-pointer dark:text-white bg-dark-smooth rounded-full dark:bg-dark-light w-7 h-7 text-center"
-                onClick={() => {
-                  setTheme(theme === "dark" ? "light" : "dark");
-                }}
-              >
-                {theme === "dark" ? " ☀️" : "🌙"}
-              </span>
-            </div>
-          ) : (
-            <div className="dark:text-white">
-              <IcRoundMenu
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}
-              />
-            </div>
-          ))}
+    <div
+      className={`transition-all fixed flex w-full bottom-0 py-3 bg-white dark:bg-dark-smooth z-20 justify-center lg:w-1/5 lg:max-w-[350px] md:w-[80px] md:ml-3 md:border-r md:border-[#262626] md:h-full md:flex-col md:justify-start`}
+    >
+      <h1 class="hidden md:block font-bold tracking-tighter text-2xl text-[#7AA5D2] py-10 px-3">
+        <a href="/">
+          <span className="hidden lg:block">
+            WatchCats <span class="font-light tracking-normal">.fr</span>
+          </span>
+          <span className="block lg:hidden">
+            W<span class="font-light tracking-normal">.fr</span>
+          </span>
+        </a>
+      </h1>
 
-        <MobileMenu
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-          setFav={setter}
-          favPage={favPage}
-        />
+      <div className="text-gray dark:text-white flex md:flex-col gap-3 sm:gap-7 items-left md:w-3/4">
+        <div
+          className={itemNavDesktop}
+          onClick={() => {
+            setLocation(!location);
+            navigate("/");
+          }}
+        >
+          <HomeFullFilled />
+          <span className={itemTextNav}>Home</span>
+        </div>
+        <div
+          className={itemNavDesktop}
+          onClick={() => {
+            setLocation(!location);
+            navigate("/favorites");
+          }}
+        >
+          <TypcnHeartFullOutline />
+          <span className={itemTextNav}>Favorites</span>
+        </div>
+
+        <div
+          className={itemNavDesktop}
+          onClick={() => {
+            navigate("/make-a-cat");
+          }}
+        >
+          <IcBaselineDriveFileRenameOutline />
+          <span className={itemTextNav}>Write a cat</span>
+        </div>
+        <div
+          className={itemNavDesktop + " opacity-40 cursor-not-allowed"}
+          onClick={() => toast("Not ready yet!")}
+        >
+          <IcSharpFilterList />
+          <span className={itemTextNav}>Filters</span>
+        </div>
+        <div
+          className={itemNavDesktop}
+          onClick={() => {
+            setTheme(theme === "dark" ? "light" : "dark");
+          }}
+        >
+          {theme === "dark" ? <MoonIc /> : <SunIc />}
+          <span className={itemTextNav}>Switch theme</span>
+        </div>
       </div>
-      {/* <div className="absolute bg-red bottom-0 left-10 rounded-t dark:text-white">
-        <IcBaselineContactSupport />
-      </div> */}
-      <ToastContainer />
     </div>
   );
 }
