@@ -30,7 +30,9 @@ export const List = ({ items, addCats }) => {
           {items?.length ? (
             items.map((cat) => <Item key={cat._id + Date.now()} cat={cat} />)
           ) : (
-            <Item key={"loading"} cat={{}} />
+            <div className="animate-pulse text-grey-dark py-2 font-semibold mt-12">
+              ⏳ Loading...
+            </div>
           )}
         </ul>
         {loading && (
