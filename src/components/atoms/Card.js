@@ -1,6 +1,6 @@
 export const DefaultCard = ({ children, className }) => (
   <div
-    className={`shadow-default sm:rounded ${className} dark:bg-dark-light dark:text-white`}
+    className={`sm:shadow-default sm:rounded ${className} sm:dark:bg-dark-light dark:text-white`}
   >
     {children}
   </div>

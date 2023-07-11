@@ -43,7 +43,7 @@ export function HomePage() {
       <div className="relative hidden 2xl:block">
         <DefaultCard className="absolute top-12 right-12 w-[500px] py-2 px-3">
           <h2 className="font-bold">Cat fact : </h2>
-          <p className="text-blue-navy dark:text-grey">{sideCat.fact}</p>
+          <p className="text-blue-navy dark:text-grey">{sideCat?.fact}</p>
         </DefaultCard>
       </div>
 

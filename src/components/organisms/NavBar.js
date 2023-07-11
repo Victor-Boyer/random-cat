@@ -45,7 +45,7 @@ export function NavBar() {
   const itemTextNav = "hidden lg:block transition-all";
   return (
     <div
-      className={`transition-all fixed flex w-full bottom-0 py-3 bg-white dark:bg-dark-smooth z-20 justify-center lg:w-1/5 lg:max-w-[350px] md:w-[80px] md:ml-3 md:border-r md:border-[#262626] md:h-full md:flex-col md:justify-start`}
+      className={`transition-all fixed flex w-full bottom-0 py-0 bg-white dark:bg-dark-smooth z-20 justify-center lg:w-1/5 lg:max-w-[350px] md:w-[80px] md:ml-3 md:border-r md:border-[#262626] md:h-full md:flex-col md:justify-start`}
     >
       <h1 class="hidden md:block font-bold tracking-tighter text-2xl text-[#7AA5D2] py-10 px-3">
         <a href="/">
